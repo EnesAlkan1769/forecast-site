@@ -1,144 +1,303 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <title>IPO Karar Destek Sistemi</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPO DSS</title>
+    <!-- TailwindCSS ve DaisyUI CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: false,
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0065CB",
+              secondary: "#00295F",
+              accent: "#FE6502",
+              neutralbg: "#E4E4E4",
+              lightblue: "#C7E0FB",
+            },
+          },
+        },
+        plugins: [daisyui],
+        daisyui: {
+          themes: [
+            {
+              ipoTheme: {
+                primary: "#0065CB",
+                "primary-focus": "#0051AB",
+                secondary: "#00295F",
+                accent: "#FE6502",
+                neutral: "#E4E4E4",
+                "base-100": "#ffffff",
+                info: "#63b3ed",
+                success: "#16a34a",
+                warning: "#dd6b20",
+                error: "#dc2626",
+              },
+            },
+          ],
+        },
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.js"></script>
+  </head>
+  <body class="bg-neutralbg font-sans">
+    <!-- 2. Drawer (Sidebar + İçerik) -->
+    <div class="drawer drawer-mobile">
+      <!-- Öncelikle drawer-toggle input’u -->
+      <input id="ipo-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <!-- Navbar -->
+        <nav class="w-full bg-base-100 shadow-md">
+          <div class="flex-none lg:hidden">
+            <!-- Mobilde sidebar toggle ikonu -->
+            <label
+              for="ipo-drawer"
+              class="btn btn-square btn-ghost"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-secondary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </label>
+          </div>
+          <div class="flex-1 px-4">
+            <span class="text-xl font-bold text-primary">IPO DSS</span>
+          </div>
+          <div class="flex-none px-4">
+            <!-- Profil kısmı -->
+            <button class="btn btn-ghost btn-circle">
+              <div class="avatar">
+                <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    src="https://ui-avatars.com/api/?name=EA"
+                    alt="Profil"
+                  />
+                </div>
+              </div>
+            </button>
+          </div>
+        </nav>
 
-  <!-- 1) TailwindCSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Ana İçerik Alanı -->
+        <main class="p-6">
+          <div class="max-w-2xl mx-auto">
+            <div class="card bg-base-100 shadow-lg">
+              <div class="card-body">
+                <h2 class="card-title text-center text-primary">
+                  Tahmin Formu
+                </h2>
+                <form id="f" class="space-y-4 mt-4">
+                  <!-- x1 Input -->
+                  <div>
+                    <label for="x1" class="label">
+                      <span class="label-text font-semibold">X1</span>
+                    </label>
+                    <input
+                      id="x1"
+                      type="number"
+                      step="any"
+                      required
+                      class="input input-bordered input-primary w-full"
+                      placeholder="X1 değerini girin"
+                    />
+                  </div>
+                  <!-- x2 Input -->
+                  <div>
+                    <label for="x2" class="label">
+                      <span class="label-text font-semibold">X2</span>
+                    </label>
+                    <input
+                      id="x2"
+                      type="number"
+                      step="any"
+                      required
+                      class="input input-bordered input-primary w-full"
+                      placeholder="X2 değerini girin"
+                    />
+                  </div>
+                  <!-- x3 Input -->
+                  <div>
+                    <label for="x3" class="label">
+                      <span class="label-text font-semibold">X3</span>
+                    </label>
+                    <input
+                      id="x3"
+                      type="number"
+                      step="any"
+                      required
+                      class="input input-bordered input-primary w-full"
+                      placeholder="X3 değerini girin"
+                    />
+                  </div>
+                  <!-- x4 Input -->
+                  <div>
+                    <label for="x4" class="label">
+                      <span class="label-text font-semibold">X4</span>
+                    </label>
+                    <input
+                      id="x4"
+                      type="number"
+                      step="any"
+                      required
+                      class="input input-bordered input-primary w-full"
+                      placeholder="X4 değerini girin"
+                    />
+                  </div>
+                  <!-- x5 Input -->
+                  <div>
+                    <label for="x5" class="label">
+                      <span class="label-text font-semibold">X5</span>
+                    </label>
+                    <input
+                      id="x5"
+                      type="number"
+                      step="any"
+                      required
+                      class="input input-bordered input-primary w-full"
+                      placeholder="X5 değerini girin"
+                    />
+                  </div>
+                  <!-- x6 Input -->
+                  <div>
+                    <label for="x6" class="label">
+                      <span class="label-text font-semibold">X6</span>
+                    </label>
+                    <input
+                      id="x6"
+                      type="number"
+                      step="any"
+                      required
+                      class="input input-bordered input-primary w-full"
+                      placeholder="X6 değerini girin"
+                    />
+                  </div>
+                  <!-- x7 Input -->
+                  <div>
+                    <label for="x7" class="label">
+                      <span class="label-text font-semibold">X7</span>
+                    </label>
+                    <input
+                      id="x7"
+                      type="number"
+                      step="any"
+                      required
+                      class="input input-bordered input-primary w-full"
+                      placeholder="X7 değerini girin"
+                    />
+                  </div>
 
-  <!-- 2) Tailwind’i Özelleştiriyoruz: Renk Paleti -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            // Paylaştığınız renkler:
-            primary: '#0065CB',   // (RGB 0,101,203)
-            darkblue: '#00295F',  // (RGB 0,41,95)
-            lightblue: '#C7E0FB', // (RGB 199,224,251)
-            orange: '#FE6502',    // (RGB 254,101,2)
-            graylight: '#E4E4E4', // (RGB 228,228,228)
-            black: '#000000',
-            white: '#FFFFFF',
-          }
-        }
-      },
-      plugins: [daisyui],
-    }
-  </script>
-  <!-- 3) DaisyUI Tam Sürümünü Ekleyelim -->
-  <script src="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.js"></script>
-</head>
-  <style>
-    body{font-family:system-ui,Arial, sans-serif;background:#f8fafc;
-         display:flex;justify-content:center;padding:2rem;}
-    .card{background:#fff;border-radius:12px;box-shadow:0 2px 8px #0001;
-          padding:2rem;max-width:420px;width:100%;}
-    label{display:block;margin-top:.7rem;font-weight:600}
-    input{width:100%;padding:.6rem;border:1px solid #cbd5e1;border-radius:8px}
-    button{margin-top:1.3rem;width:100%;padding:.7rem;border:0;border-radius:8px;
-           background:#2563eb;color:#fff;font-weight:700;cursor:pointer}
-    #result{margin-top:1.3rem;font-size:1.1rem;font-weight:600;text-align:center}
-  </style>
-</head>
- <body class="bg-graylight min-h-screen flex">
-  <!-- ============== 1) Sidebar ============== -->
-  <aside class="w-64 bg-darkblue text-white flex-shrink-0 flex flex-col">
-    <!-- Logo / Başlık -->
-    <div class="p-4 text-2xl font-bold border-b border-blue-800">
-      <img src="https://img.icons8.com/fluency/48/ffffff/stock-market.png" 
-           alt="Borsa İkonu" class="inline-block w-6 h-6 mr-2 align-text-bottom"/>
-      IPO DSS
-    </div>
-    <!-- Menü Öğeleri -->
-    <nav class="mt-6 flex-1">
-      <!-- Dashboard -->
-      <a href="#"
-         class="flex items-center px-4 py-2 hover:bg-primary rounded-md transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             class="h-5 w-5 mr-3 fill-current text-white"
-             viewBox="0 0 24 24">
-          <path d="M3 3h18v18H3V3z" />
-        </svg>
-        Panel
-      </a>
-      <!-- Tahmin Formu -->
-      <a href="#"
-         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             class="h-5 w-5 mr-3 fill-current text-white"
-             viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-        Tahmin Formu
-      </a>
-      <!-- Sonuçlar -->
-      <a href="#"
-         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             class="h-5 w-5 mr-3 fill-current text-white"
-             viewBox="0 0 24 24">
-          <path d="M9 17v-6h6v6M4 21h16" />
-        </svg>
-        Sonuçlar
-      </a>
-      <!-- Raporlar -->
-      <a href="#"
-         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             class="h-5 w-5 mr-3 fill-current text-white"
-             viewBox="0 0 24 24">
-          <path d="M11 17a1 1 0 001 1h2a1 1 0 001-1v-4h3l-6-6-6 6h3v4z" />
-        </svg>
-        Raporlar
-      </a>
-      <!-- Ayarlar -->
-      <a href="#"
-         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             class="h-5 w-5 mr-3 fill-current text-white"
-             viewBox="0 0 24 24">
-          <path d="M12 6v2m0 8v2m6-6h2M4 12H2m15.364-5.364l1.414 1.414M6.222 17.778l-1.414 1.414m0-12.728l1.414 1.414M17.778 17.778l1.414 1.414" />
-        </svg>
-        Ayarlar
-      </a>
-    </nav>
-  </aside>
+                  <!-- Gönder Butonu -->
+                  <div class="text-center">
+                    <button
+                      type="submit"
+                      class="btn btn-accent w-full mt-2"
+                    >
+                      Gönder
+                    </button>
+                  </div>
+                </form>
 
-  <!-- ============== 2) Main İçerik ============== -->
-  <div class="flex-1 flex flex-col">
-    <!-- --- 2.1) Header --- -->
-    <header class="flex justify-between items-center 
-                   bg-gradient-to-r from-primary via-lightblue to-primary 
-                   text-white px-6 py-4 shadow-md">
-      <div class="text-2xl font-semibold flex items-center">
-        <!-- Borsa/Money Icon (Küçük Animasyonlu gif de ekleyebilirsiniz) -->
-        <img src="https://img.icons8.com/ios-filled/30/ffffff/bitcoin.png" 
-             alt="Borsa İkonu" class="inline-block w-6 h-6 mr-2"/>
-        IPO Karar Destek
+                <!-- Sonuç Mesajı -->
+                <p
+                  id="result"
+                  class="mt-4 text-center text-lg font-semibold"
+                ></p>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
-      <div class="flex items-center space-x-4">
-        <span>Enes Alkan</span>
-        <img src="https://via.placeholder.com/32" 
-             alt="Profil" class="rounded-full w-8 h-8 border-2 border-white" />
-      </div>
-    </header>
 
-    <!-- --- 2.2) İçerik Bölümü (Grid ile 8:4 kolon) --- -->
-    <main class="flex-1 p-8 overflow-y-auto bg-graylight">
-      <div class="grid grid-cols-12 gap-6">
-        <!-- ------ 2.2.1) Form Kartı (8 Kolon) ------ -->
-        <div class="col-span-8">
-          <div class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
-            <h2 class="text-2xl font-bold text-center text-primary">Tahmin Formu</h2>
-            <form id="f" class="space-y-4">
-              <!-- İki sütuna bölerek X1–X6 girdilerini yerleştireceğiz, X7 tek satır: -->
-              <div class="grid grid-cols-2 gap-4">
-                <!-- X1 -->
-                <div>
-                  <label for="x1" class="block text-sm font-medium text-gray-700">X
-
+      <!-- 3. Drawer (Sidebar) İçeriği -->
+      <div class="drawer-side bg-base-100">
+        <label for="ipo-drawer" class="drawer-overlay"></label>
+        <aside class="w-64 bg-base-200 text-base-content shadow-md">
+          <div class="p-4 border-b border-base-300">
+            <span class="text-lg font-bold text-primary">IPO Karar</span>
+          </div>
+          <ul class="menu p-4">
+            <li class="mb-2">
+              <a class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 12h18" />
+                  <path d="M3 6h18" />
+                  <path d="M3 18h18" />
+                </svg>
+                Panel
+              </a>
+            </li>
+            <li class="mb-2 active">
+              <a class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12h8" />
+                  <path d="M12 8v8" />
+                </svg>
+                Tahmin Formu
+              </a>
+            </li>
+            <li class="mb-2">
+              <a class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10h-6l-2-3-2 3H3m18 0v6a2 2 0 0 1-2 2h-4" />
+                  <path d="M9 10l2-3 2 3" />
+                </svg>
+                Sonuçlar
+              </a>
+            </li>
+            <li class="mb-2">
+              <a class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 19h16" />
+                  <path d="M4
 </body>
 </html>
-
