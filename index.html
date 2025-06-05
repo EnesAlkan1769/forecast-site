@@ -2,21 +2,34 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Tahmin Aracı</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <title>IPO Karar Destek Sistemi</title>
+
+  <!-- 1) TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 2) Tailwind’i Özelleştiriyoruz: Renk Paleti -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#2563eb',
-          },
-        },
+            // Paylaştığınız renkler:
+            primary: '#0065CB',   // (RGB 0,101,203)
+            darkblue: '#00295F',  // (RGB 0,41,95)
+            lightblue: '#C7E0FB', // (RGB 199,224,251)
+            orange: '#FE6502',    // (RGB 254,101,2)
+            graylight: '#E4E4E4', // (RGB 228,228,228)
+            black: '#000000',
+            white: '#FFFFFF',
+          }
+        }
       },
       plugins: [daisyui],
     }
   </script>
+  <!-- 3) DaisyUI Tam Sürümünü Ekleyelim -->
   <script src="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.js"></script>
+</head>
   <style>
     body{font-family:system-ui,Arial, sans-serif;background:#f8fafc;
          display:flex;justify-content:center;padding:2rem;}
@@ -29,81 +42,103 @@
     #result{margin-top:1.3rem;font-size:1.1rem;font-weight:600;text-align:center}
   </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <!-- DaisyUI Kart Başlangıcı -->
-  <div class="card w-96 bg-white shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title text-center mb-4">Tahmin Formu</h2>
-      <form id="f" class="space-y-4">
-        <div>
-          <label for="x1" class="block font-medium mb-1">X1</label>
-          <input id="x1" type="number" step="any" required
-                 class="input input-bordered w-full" />
-        </div>
-        <div>
-          <label for="x2" class="block font-medium mb-1">X2</label>
-          <input id="x2" type="number" step="any" required
-                 class="input input-bordered w-full" />
-        </div>
-        <div>
-          <label for="x3" class="block font-medium mb-1">X3</label>
-          <input id="x3" type="number" step="any" required
-                 class="input input-bordered w-full" />
-        </div>
-        <div>
-          <label for="x4" class="block font-medium mb-1">X4</label>
-          <input id="x4" type="number" step="any" required
-                 class="input input-bordered w-full" />
-        </div>
-        <div>
-          <label for="x5" class="block font-medium mb-1">X5</label>
-          <input id="x5" type="number" step="any" required
-                 class="input input-bordered w-full" />
-        </div>
-        <div>
-          <label for="x6" class="block font-medium mb-1">X6</label>
-          <input id="x6" type="number" step="any" required
-                 class="input input-bordered w-full" />
-        </div>
-        <div>
-          <label for="x7" class="block font-medium mb-1">X7</label>
-          <input id="x7" type="number" step="any" required
-                 class="input input-bordered w-full" />
-        </div>
-        <button type="submit"
-                class="btn btn-primary w-full mt-2">Gönder</button>
-      </form>
-      <div id="result" class="mt-4 text-center text-lg font-semibold"></div>
+ <body class="bg-graylight min-h-screen flex">
+  <!-- ============== 1) Sidebar ============== -->
+  <aside class="w-64 bg-darkblue text-white flex-shrink-0 flex flex-col">
+    <!-- Logo / Başlık -->
+    <div class="p-4 text-2xl font-bold border-b border-blue-800">
+      <img src="https://img.icons8.com/fluency/48/ffffff/stock-market.png" 
+           alt="Borsa İkonu" class="inline-block w-6 h-6 mr-2 align-text-bottom"/>
+      IPO DSS
     </div>
-  </div>
-  <!-- DaisyUI Kart Sonu -->
+    <!-- Menü Öğeleri -->
+    <nav class="mt-6 flex-1">
+      <!-- Dashboard -->
+      <a href="#"
+         class="flex items-center px-4 py-2 hover:bg-primary rounded-md transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="h-5 w-5 mr-3 fill-current text-white"
+             viewBox="0 0 24 24">
+          <path d="M3 3h18v18H3V3z" />
+        </svg>
+        Panel
+      </a>
+      <!-- Tahmin Formu -->
+      <a href="#"
+         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="h-5 w-5 mr-3 fill-current text-white"
+             viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+        Tahmin Formu
+      </a>
+      <!-- Sonuçlar -->
+      <a href="#"
+         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="h-5 w-5 mr-3 fill-current text-white"
+             viewBox="0 0 24 24">
+          <path d="M9 17v-6h6v6M4 21h16" />
+        </svg>
+        Sonuçlar
+      </a>
+      <!-- Raporlar -->
+      <a href="#"
+         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="h-5 w-5 mr-3 fill-current text-white"
+             viewBox="0 0 24 24">
+          <path d="M11 17a1 1 0 001 1h2a1 1 0 001-1v-4h3l-6-6-6 6h3v4z" />
+        </svg>
+        Raporlar
+      </a>
+      <!-- Ayarlar -->
+      <a href="#"
+         class="flex items-center px-4 py-2 mt-2 hover:bg-primary rounded-md transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="h-5 w-5 mr-3 fill-current text-white"
+             viewBox="0 0 24 24">
+          <path d="M12 6v2m0 8v2m6-6h2M4 12H2m15.364-5.364l1.414 1.414M6.222 17.778l-1.414 1.414m0-12.728l1.414 1.414M17.778 17.778l1.414 1.414" />
+        </svg>
+        Ayarlar
+      </a>
+    </nav>
+  </aside>
 
-  <script>
-    const form = document.getElementById('f');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const body = {
-        x1: +x1.value, x2: +x2.value, x3: +x3.value,
-        x4: +x4.value, x5: +x5.value, x6: +x6.value, x7: +x7.value
-      };
-      try {
-        const r = await fetch("https://forecast-site-api.onrender.com/predict", {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(body)
-        });
-        if (!r.ok) throw new Error(r.status);
-        const data = await r.json();
-        const sonuc = (data.result === 'A')
-          ? '✅ Tebrikler, pozitif senaryodasınız.'
-          : '⚠️ Üzgünüm, hedefin altındasınız.';
-        document.getElementById('result').textContent = sonuc;
-      } catch (err) {
-        document.getElementById('result')
-                .textContent = '❌ Bir hata oluştu: ' + err.message;
-      }
-    });
-  </script>
+  <!-- ============== 2) Main İçerik ============== -->
+  <div class="flex-1 flex flex-col">
+    <!-- --- 2.1) Header --- -->
+    <header class="flex justify-between items-center 
+                   bg-gradient-to-r from-primary via-lightblue to-primary 
+                   text-white px-6 py-4 shadow-md">
+      <div class="text-2xl font-semibold flex items-center">
+        <!-- Borsa/Money Icon (Küçük Animasyonlu gif de ekleyebilirsiniz) -->
+        <img src="https://img.icons8.com/ios-filled/30/ffffff/bitcoin.png" 
+             alt="Borsa İkonu" class="inline-block w-6 h-6 mr-2"/>
+        IPO Karar Destek
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>Enes Alkan</span>
+        <img src="https://via.placeholder.com/32" 
+             alt="Profil" class="rounded-full w-8 h-8 border-2 border-white" />
+      </div>
+    </header>
+
+    <!-- --- 2.2) İçerik Bölümü (Grid ile 8:4 kolon) --- -->
+    <main class="flex-1 p-8 overflow-y-auto bg-graylight">
+      <div class="grid grid-cols-12 gap-6">
+        <!-- ------ 2.2.1) Form Kartı (8 Kolon) ------ -->
+        <div class="col-span-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+            <h2 class="text-2xl font-bold text-center text-primary">Tahmin Formu</h2>
+            <form id="f" class="space-y-4">
+              <!-- İki sütuna bölerek X1–X6 girdilerini yerleştireceğiz, X7 tek satır: -->
+              <div class="grid grid-cols-2 gap-4">
+                <!-- X1 -->
+                <div>
+                  <label for="x1" class="block text-sm font-medium text-gray-700">X
+
 </body>
 </html>
 
