@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tahmin Aracı</title>
+  <style>
+    body{font-family:system-ui,Arial, sans-serif;background:#f8fafc;
+         display:flex;justify-content:center;padding:2rem;}
+    .card{background:#fff;border-radius:12px;box-shadow:0 2px 8px #0001;
+          padding:2rem;max-width:420px;width:100%;}
+    label{display:block;margin-top:.7rem;font-weight:600}
+    input{width:100%;padding:.6rem;border:1px solid #cbd5e1;border-radius:8px}
+    button{margin-top:1.3rem;width:100%;padding:.7rem;border:0;border-radius:8px;
+           background:#2563eb;color:#fff;font-weight:700;cursor:pointer}
+    #result{margin-top:1.3rem;font-size:1.1rem;font-weight:600;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 style="text-align:center">Tahmin Formu</h2>
+    <form id="f">
+      <label>X1 <input id="x1" type="number" step="any" required></label>
+      <label>X2 <input id="x2" type="number" step="any" required></label>
+      <label>X3 <input id="x3" type="number" step="any" required></label>
+      <label>X4 <input id="x4" type="number" step="any" required></label>
+      <label>X5 <input id="x5" type="number" step="any" required></label>
+      <label>X6 <input id="x6" type="number" step="any" required></label>
+      <label>X7 <input id="x7" type="number" step="any" required></label>
+      <button type="submit">Gönder</button>
+    </form>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('f');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const body = {
+        x1:+x1.value, x2:+x2.value, x3:+x3.value,
+        x4:+x4.value, x5:+x5.value, x6:+x6.value, x7:+x7.value
+      };
+      try{
+        const r = await fetch('http://127.0.0.1:8000/predict',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(body)
+        });
+        if(!r.ok) throw new Error(r.status);
+        const data = await r.json();
+        result.textContent = data.result==='A'
+          ? '✅ Tebrikler, pozitif senaryodasınız.'
+          : 'ℹ️ Üzgünüm, hedefin altındasınız.';
+      }catch(err){
+        result.textContent = 'Sunucu hatası: '+err.message;
+      }
+    });
+  </script>
+</body>
+</html>
+
