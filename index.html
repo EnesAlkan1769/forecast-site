@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <title>Tahmin Aracı</title>
+<script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2563eb',
+          },
+        },
+      },
+      plugins: [daisyui],
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.js"></script>
   <style>
     body{font-family:system-ui,Arial, sans-serif;background:#f8fafc;
          display:flex;justify-content:center;padding:2rem;}
@@ -15,43 +29,78 @@
     #result{margin-top:1.3rem;font-size:1.1rem;font-weight:600;text-align:center}
   </style>
 </head>
-<body>
-  <div class="card">
-    <h2 style="text-align:center">Tahmin Formu</h2>
-    <form id="f">
-      <label>X1 <input id="x1" type="number" step="any" required></label>
-      <label>X2 <input id="x2" type="number" step="any" required></label>
-      <label>X3 <input id="x3" type="number" step="any" required></label>
-      <label>X4 <input id="x4" type="number" step="any" required></label>
-      <label>X5 <input id="x5" type="number" step="any" required></label>
-      <label>X6 <input id="x6" type="number" step="any" required></label>
-      <label>X7 <input id="x7" type="number" step="any" required></label>
-      <button type="submit">Gönder</button>
-    </form>
-    <p id="result"></p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <!-- DaisyUI Kart Başlangıcı -->
+  <div class="card w-96 bg-white shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Tahmin Formu</h2>
+      <form id="f" class="space-y-4">
+        <div>
+          <label for="x1" class="block font-medium mb-1">X1</label>
+          <input id="x1" type="number" step="any" required
+                 class="input input-bordered w-full" />
+        </div>
+        <div>
+          <label for="x2" class="block font-medium mb-1">X2</label>
+          <input id="x2" type="number" step="any" required
+                 class="input input-bordered w-full" />
+        </div>
+        <div>
+          <label for="x3" class="block font-medium mb-1">X3</label>
+          <input id="x3" type="number" step="any" required
+                 class="input input-bordered w-full" />
+        </div>
+        <div>
+          <label for="x4" class="block font-medium mb-1">X4</label>
+          <input id="x4" type="number" step="any" required
+                 class="input input-bordered w-full" />
+        </div>
+        <div>
+          <label for="x5" class="block font-medium mb-1">X5</label>
+          <input id="x5" type="number" step="any" required
+                 class="input input-bordered w-full" />
+        </div>
+        <div>
+          <label for="x6" class="block font-medium mb-1">X6</label>
+          <input id="x6" type="number" step="any" required
+                 class="input input-bordered w-full" />
+        </div>
+        <div>
+          <label for="x7" class="block font-medium mb-1">X7</label>
+          <input id="x7" type="number" step="any" required
+                 class="input input-bordered w-full" />
+        </div>
+        <button type="submit"
+                class="btn btn-primary w-full mt-2">Gönder</button>
+      </form>
+      <div id="result" class="mt-4 text-center text-lg font-semibold"></div>
+    </div>
   </div>
+  <!-- DaisyUI Kart Sonu -->
 
   <script>
     const form = document.getElementById('f');
-    form.addEventListener('submit', async (e)=>{
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const body = {
-        x1:+x1.value, x2:+x2.value, x3:+x3.value,
-        x4:+x4.value, x5:+x5.value, x6:+x6.value, x7:+x7.value
+        x1: +x1.value, x2: +x2.value, x3: +x3.value,
+        x4: +x4.value, x5: +x5.value, x6: +x6.value, x7: +x7.value
       };
-      try{
+      try {
         const r = await fetch("https://forecast-site-api.onrender.com/predict", {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(body)
         });
-        if(!r.ok) throw new Error(r.status);
+        if (!r.ok) throw new Error(r.status);
         const data = await r.json();
-        result.textContent = data.result==='A'
+        const sonuc = (data.result === 'A')
           ? '✅ Tebrikler, pozitif senaryodasınız.'
-          : 'ℹ️ Üzgünüm, hedefin altındasınız.';
-      }catch(err){
-        result.textContent = 'Sunucu hatası: '+err.message;
+          : '⚠️ Üzgünüm, hedefin altındasınız.';
+        document.getElementById('result').textContent = sonuc;
+      } catch (err) {
+        document.getElementById('result')
+                .textContent = '❌ Bir hata oluştu: ' + err.message;
       }
     });
   </script>
