@@ -40,7 +40,7 @@
         x4:+x4.value, x5:+x5.value, x6:+x6.value, x7:+x7.value
       };
       try{
-        const r = await fetch('http://127.0.0.1:8000/predict',{
+        const r = await fetch("https://forecast-site-api.onrender.com/predict", {
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify(body)
