@@ -23,12 +23,12 @@
 
 <body class="bg-lightgray min-h-screen flex flex-col justify-between">
   <header class="bg-white shadow border-b">
-<div class="container mx-auto px-6 py-4 relative">
-  <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center">
-    Decision Support System<br />for Initial Public Offerings
-  </h1>
-  <img src="itu-logo.png" alt="ITU Logo" class="h-20 w-auto absolute right-6 top-1/2 -translate-y-1/2" />
-</div>
+    <div class="container mx-auto px-6 py-4 relative">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center">
+        Decision Support System<br />for Initial Public Offerings
+      </h1>
+      <img src="itu-logo.png" alt="ITU Logo" class="h-20 w-auto absolute right-6 top-1/2 -translate-y-1/2" />
+    </div>
   </header>
 
   <section class="container mx-auto px-6 mt-8 text-center">
@@ -39,54 +39,61 @@
   </section>
 
   <main class="flex-grow container mx-auto px-6 py-8">
-    <div class="max-w-md mx-auto">
-      <h2 class="text-2xl font-semibold text-blueitutech mb-6 text-center">Analysis Form</h2>
+    <div class="flex flex-col lg:flex-row lg:space-x-10">
+      <!-- Form Container -->
+      <div class="w-full lg:w-1/2">
+        <h2 class="text-2xl font-semibold text-blueitutech mb-6 text-center">Analysis Form</h2>
 
-      <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
-        <form id="ipo-form" class="space-y-5">
-          <!-- Inputs X1 to X7 -->
-          <div>
-            <label for="x1" class="block text-gray-800 font-medium mb-1">X1</label>
-            <input id="x1" type="number" step="any" placeholder="Enter X1 value"
-              class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-          </div>
-          <div>
-            <label for="x2" class="block text-gray-800 font-medium mb-1">X2</label>
-            <input id="x2" type="number" step="any" placeholder="Enter X2 value"
-              class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-          </div>
-          <div>
-            <label for="x3" class="block text-gray-800 font-medium mb-1">X3</label>
-            <input id="x3" type="number" step="any" placeholder="Enter X3 value"
-              class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-          </div>
-          <div>
-            <label for="x4" class="block text-gray-800 font-medium mb-1">X4</label>
-            <input id="x4" type="number" step="any" placeholder="Enter X4 value"
-              class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-          </div>
-          <div>
-            <label for="x5" class="block text-gray-800 font-medium mb-1">X5</label>
-            <input id="x5" type="number" step="any" placeholder="Enter X5 value"
-              class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-          </div>
-          <div>
-            <label for="x6" class="block text-gray-800 font-medium mb-1">X6</label>
-            <input id="x6" type="number" step="any" placeholder="Enter X6 value"
-              class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-          </div>
-          <div>
-            <label for="x7" class="block text-gray-800 font-medium mb-1">X7</label>
-            <input id="x7" type="number" step="any" placeholder="Enter X7 value"
-              class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-          </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
+          <form id="ipo-form" class="space-y-5">
+            <!-- Inputs X1 to X7 -->
+            <div>
+              <label for="x1" class="block text-gray-800 font-medium mb-1">X1</label>
+              <input id="x1" type="number" step="any" placeholder="Enter X1 value"
+                class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
+            </div>
+            <div>
+              <label for="x2" class="block text-gray-800 font-medium mb-1">X2</label>
+              <input id="x2" type="number" step="any" placeholder="Enter X2 value"
+                class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
+            </div>
+            <div>
+              <label for="x3" class="block text-gray-800 font-medium mb-1">X3</label>
+              <input id="x3" type="number" step="any" placeholder="Enter X3 value"
+                class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
+            </div>
+            <div>
+              <label for="x4" class="block text-gray-800 font-medium mb-1">X4</label>
+              <input id="x4" type="number" step="any" placeholder="Enter X4 value"
+                class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
+            </div>
+            <div>
+              <label for="x5" class="block text-gray-800 font-medium mb-1">X5</label>
+              <input id="x5" type="number" step="any" placeholder="Enter X5 value"
+                class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
+            </div>
+            <div>
+              <label for="x6" class="block text-gray-800 font-medium mb-1">X6</label>
+              <input id="x6" type="number" step="any" placeholder="Enter X6 value"
+                class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
+            </div>
+            <div>
+              <label for="x7" class="block text-gray-800 font-medium mb-1">X7</label>
+              <input id="x7" type="number" step="any" placeholder="Enter X7 value"
+                class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
+            </div>
+            <button type="submit"
+              class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none focus:outline-none focus:ring-2 focus:ring-blueitutech transition duration-200 py-3">
+              RUN ANALYSIS
+            </button>
+          </form>
+        </div>
+      </div>
 
-          <button type="submit"
-            class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none focus:outline-none focus:ring-2 focus:ring-blueitutech transition duration-200 py-3">
-            RUN ANALYSIS
-          </button>
-        </form>
-        <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
+      <!-- Result Container -->
+      <div class="w-full lg:w-1/2 mt-10 lg:mt-0">
+        <h2 class="text-xl font-semibold text-blueitutech mb-4 text-center">Result</h2>
+        <div id="result" class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300 text-center text-lg font-semibold text-gray-900"></div>
       </div>
     </div>
   </main>
@@ -141,3 +148,4 @@
   </script>
 </body>
 </html>
+
