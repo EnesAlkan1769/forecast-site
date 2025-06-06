@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Decision Support System for IPOs</title>
 
+  <!-- Tailwind + DaisyUI -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -27,7 +28,7 @@
 
 <body class="bg-lightgray min-h-screen flex flex-col justify-between">
 
-  <!-- ===================== HEADER ===================== -->
+  <!-- ========== HEADER ========== -->
   <header class="bg-white shadow border-b">
     <div class="container mx-auto flex items-center justify-between px-6 py-4">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center flex-grow">
@@ -37,7 +38,7 @@
     </div>
   </header>
 
-  <!-- ===================== KARŞILAMA METNİ ===================== -->
+  <!-- ========== WELCOME TEXT ========== -->
   <section class="container mx-auto px-6 mt-8 text-center">
     <p class="text-gray-700 text-lg max-w-2xl mx-auto">
       Welcome to our Decision Support System designed for initial public offerings!<br />
@@ -45,7 +46,7 @@
     </p>
   </section>
 
-  <!-- ===================== FORM BÖLÜMÜ ===================== -->
+  <!-- ========== FORM ========== -->
   <main class="flex-grow container mx-auto px-6 py-8">
     <div class="max-w-md mx-auto">
       <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Analysis Form</h2>
@@ -53,37 +54,57 @@
       <div class="bg-lightgray rounded-2xl shadow-lg p-6 border border-gray-300">
         <form id="ipo-form" class="space-y-5">
 
-          <!-- X1-X7 Inputları -->
-          ${[1,2,3,4,5,6,7].map(i => `
-            <div>
-              <label for="x${i}" class="block text-gray-800 font-medium mb-1">X${i}</label>
-              <input
-                id="x${i}"
-                type="number"
-                step="any"
-                placeholder="Enter X${i} value"
-                class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
-                required
-              />
-            </div>
-          `).join('')}
+          <!-- X1-X7 Inputs -->
+          <div>
+            <label for="x1" class="block text-gray-800 font-medium mb-1">X1</label>
+            <input id="x1" type="number" step="any" placeholder="Enter X1 value"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech" required />
+          </div>
+          <div>
+            <label for="x2" class="block text-gray-800 font-medium mb-1">X2</label>
+            <input id="x2" type="number" step="any" placeholder="Enter X2 value"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech" required />
+          </div>
+          <div>
+            <label for="x3" class="block text-gray-800 font-medium mb-1">X3</label>
+            <input id="x3" type="number" step="any" placeholder="Enter X3 value"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech" required />
+          </div>
+          <div>
+            <label for="x4" class="block text-gray-800 font-medium mb-1">X4</label>
+            <input id="x4" type="number" step="any" placeholder="Enter X4 value"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech" required />
+          </div>
+          <div>
+            <label for="x5" class="block text-gray-800 font-medium mb-1">X5</label>
+            <input id="x5" type="number" step="any" placeholder="Enter X5 value"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech" required />
+          </div>
+          <div>
+            <label for="x6" class="block text-gray-800 font-medium mb-1">X6</label>
+            <input id="x6" type="number" step="any" placeholder="Enter X6 value"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech" required />
+          </div>
+          <div>
+            <label for="x7" class="block text-gray-800 font-medium mb-1">X7</label>
+            <input id="x7" type="number" step="any" placeholder="Enter X7 value"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech" required />
+          </div>
 
-          <!-- ANALYSIS Butonu -->
-          <button
-            type="submit"
-            class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none focus:outline-none focus:ring-2 focus:ring-blueitutech transition duration-200 py-3"
-          >
+          <!-- Submit Button -->
+          <button type="submit"
+            class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none focus:outline-none focus:ring-2 focus:ring-blueitutech transition duration-200 py-3">
             RUN ANALYSIS
           </button>
         </form>
 
-        <!-- Sonuç -->
+        <!-- Result Display -->
         <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
       </div>
     </div>
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- ========== FOOTER ========== -->
   <footer class="bg-blueitutech mt-12">
     <div class="container mx-auto px-6 py-5 text-center text-white">
       <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
@@ -93,7 +114,7 @@
     </div>
   </footer>
 
-  <!-- ===================== JAVASCRIPT ===================== -->
+  <!-- ========== SCRIPT ========== -->
   <script>
     document.getElementById("ipo-form").addEventListener("submit", async function (e) {
       e.preventDefault();
