@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IPO Decision Support System</title>
+  <title>Decision Support System for IPOs</title>
 
   <!-- 1) Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- 2) DaisyUI plugin (for Tailwind) -->
+  <!-- 2) DaisyUI Plugin (for Tailwind) -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             blueitutech: '#00295F',    /* ITU‐blue */
-            orangebutton: '#FE6502',    /* orange for buttons */
-            lightgray: '#E4E4E4',       /* light gray background */
+            orangebutton: '#FE6502',    /* Turuncu buton */
+            lightgray: '#E4E4E4',       /* Açık gri arka plan */
           }
         }
       },
@@ -32,32 +32,37 @@
 
 <body class="bg-lightgray min-h-screen flex flex-col">
 
-  <!-- ==========  HEADER  ========== -->
-  <header class="bg-blueitutech text-white py-4 shadow-md">
-    <div class="container mx-auto flex items-center px-4">
-      <!-- ITU logo (itu-logo.png) -->
-      <img src="itu-logo.png" alt="ITU Logo" class="h-12 w-auto mr-4" />
-      <!-- Title text -->
-      <h1 class="text-xl font-semibold">Initial Public Offering Decision Support</h1>
+  <!-- ========== HEADER ========= -->
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Başlık: Ortada kalıyor -->
+      <h1 class="text-3xl font-bold text-gray-800 text-center flex-grow">
+        Decision Support System<br />for Initial Public Offerings
+      </h1>
+      <!-- ITU logosu sağa hizalı -->
+      <img src="itu-logo.png" alt="ITU Logo" class="h-16 w-auto ml-4" />
     </div>
   </header>
 
-  <!-- ==========  MAIN CONTENT  ========== -->
-  <main class="flex-grow container mx-auto px-4 py-8">
-    <div class="max-w-lg mx-auto">
+  <!-- ========== KARŞILAMA METNİ ========= -->
+  <section class="container mx-auto px-6 mt-8 text-center">
+    <p class="text-gray-700 text-lg">
+      Welcome to our Decision Support System designed for initial public offerings!<br />
+      Please enter the information of the IPO you want to be analyzed below.
+    </p>
+  </section>
 
-      <!-- Intro text -->
-      <div class="mb-6 text-center">
-        <h2 class="text-2xl font-bold mb-2">Prediction Form</h2>
-        <p class="text-gray-700">
-          Please enter the data for the IPO you want to evaluate.
-        </p>
-      </div>
+  <!-- ========== MAIN (FORM) ========= -->
+  <main class="flex-grow container mx-auto px-6 py-8">
+    <div class="max-w-md mx-auto">
 
-      <!-- Form Card -->
-      <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+      <!-- Form Başlığı -->
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Analysis Form</h2>
+
+      <!-- Form Kartı -->
+      <div class="bg-white rounded-2xl shadow-lg p-6">
         <form id="ipo-form" class="space-y-4">
-          <!-- Each input field styled with DaisyUI / Tailwind -->
+          <!-- X1 -->
           <div>
             <label for="x1" class="block text-gray-800 font-medium mb-1">X1</label>
             <input
@@ -65,10 +70,11 @@
               type="number"
               step="any"
               placeholder="Enter X1 value"
-              class="input input-bordered input-md w-full"
+              class="input input-bordered w-full"
               required
             />
           </div>
+          <!-- X2 -->
           <div>
             <label for="x2" class="block text-gray-800 font-medium mb-1">X2</label>
             <input
@@ -76,10 +82,11 @@
               type="number"
               step="any"
               placeholder="Enter X2 value"
-              class="input input-bordered input-md w-full"
+              class="input input-bordered w-full"
               required
             />
           </div>
+          <!-- X3 -->
           <div>
             <label for="x3" class="block text-gray-800 font-medium mb-1">X3</label>
             <input
@@ -87,10 +94,11 @@
               type="number"
               step="any"
               placeholder="Enter X3 value"
-              class="input input-bordered input-md w-full"
+              class="input input-bordered w-full"
               required
             />
           </div>
+          <!-- X4 -->
           <div>
             <label for="x4" class="block text-gray-800 font-medium mb-1">X4</label>
             <input
@@ -98,10 +106,11 @@
               type="number"
               step="any"
               placeholder="Enter X4 value"
-              class="input input-bordered input-md w-full"
+              class="input input-bordered w-full"
               required
             />
           </div>
+          <!-- X5 -->
           <div>
             <label for="x5" class="block text-gray-800 font-medium mb-1">X5</label>
             <input
@@ -109,10 +118,11 @@
               type="number"
               step="any"
               placeholder="Enter X5 value"
-              class="input input-bordered input-md w-full"
+              class="input input-bordered w-full"
               required
             />
           </div>
+          <!-- X6 -->
           <div>
             <label for="x6" class="block text-gray-800 font-medium mb-1">X6</label>
             <input
@@ -120,10 +130,11 @@
               type="number"
               step="any"
               placeholder="Enter X6 value"
-              class="input input-bordered input-md w-full"
+              class="input input-bordered w-full"
               required
             />
           </div>
+          <!-- X7 -->
           <div>
             <label for="x7" class="block text-gray-800 font-medium mb-1">X7</label>
             <input
@@ -131,30 +142,29 @@
               type="number"
               step="any"
               placeholder="Enter X7 value"
-              class="input input-bordered input-md w-full"
+              class="input input-bordered w-full"
               required
             />
           </div>
 
-          <!-- Submit Button -->
+          <!-- Gönder Butonu -->
           <button
             type="submit"
-            class="btn w-full bg-orangebutton hover:bg-orange-600 border-none text-white"
+            class="btn w-full bg-orangebutton hover:bg-orange-600 text-white border-none mt-2"
           >
             RUN ANALYSIS
           </button>
         </form>
 
-        <!-- Area to show API result -->
+        <!-- API Sonucu için Alan -->
         <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
       </div>
     </div>
   </main>
 
-
-  <!-- ==========  FOOTER  ========== -->
-  <footer class="bg-white border-t mt-12">
-    <div class="container mx-auto px-4 py-4 text-center text-gray-600">
+  <!-- ========== FOOTER ========= -->
+  <footer class="bg-white border-t">
+    <div class="container mx-auto px-6 py-4 text-center text-gray-600">
       <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
       <p class="mt-1 text-sm">
         Disclaimer: This tool does not constitute investment advice; for informational purposes only.
@@ -163,7 +173,7 @@
   </footer>
 
 
-  <!-- ==========  JavaScript: API Form Interaction ========== -->
+  <!-- ========== JavaScript: API Etkileşimi ========== -->
   <script>
     const form = document.getElementById('ipo-form');
     const resultDiv = document.getElementById('result');
@@ -171,7 +181,7 @@
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      // Read form values
+      // Form değerlerini oku
       const body = {
         x1: +document.getElementById('x1').value,
         x2: +document.getElementById('x2').value,
@@ -183,7 +193,7 @@
       };
 
       try {
-        // Replace this URL with your actual FastAPI/Render endpoint
+        // Kendi FastAPI/Render URL’inizi buraya koyun
         const response = await fetch("https://forecast-site-api.onrender.com/predict", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -193,7 +203,7 @@
         if (!response.ok) throw new Error(response.status);
 
         const data = await response.json();
-        // Suppose API returns { result: "A" } or { result: "B" }
+        // Örnek: API { result: "A" } veya { result: "B" } döndürüyor
         if (data.result === "A") {
           resultDiv.innerHTML = "🎉 Congratulations, positive scenario detected!";
         } else {
@@ -205,7 +215,6 @@
       }
     });
   </script>
-
 </body>
 </html>
 
