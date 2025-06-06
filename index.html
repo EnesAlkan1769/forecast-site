@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Decision Support System for IPOs</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- 1. Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- DaisyUI Plugin (for Tailwind) -->
+  <!-- 2. DaisyUI Plugin (Tailwind’tan sonra) -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            blueitutech: '#00295F',    /* ITU‐mavi */
-            orangebutton: '#FE6502',    /* Turuncu buton */
-            lightgray: '#E4E4E4',       /* Açık gri arka plan */
+            /* İstediğiniz renkler buradaki değişken isimleriyle kullanılabilir */
+            blueitutech: "#00295F",    /* Footer’ı ve bazı spot öğeleri boyamak için */
+            orangebutton: "#FE6502",    /* “RUN ANALYSIS” butonunun sabit arka planı */
+            lightgray: "#E4E4E4"        /* Form kartının ve sayfa arka planının genel rengi */
           }
         }
       },
@@ -24,44 +25,48 @@
       daisyui: {
         themes: false
       }
-    }
+    };
   </script>
-  <!-- DaisyUI CDN -->
+  <!-- 3. DaisyUI Script -->
   <script src="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.js"></script>
 </head>
 
 <body class="bg-lightgray min-h-screen flex flex-col">
 
-  <!-- ========== HEADER ========= -->
-  <header class="bg-white shadow-md">
+  <!-- ========== HEADER ========== -->
+  <header class="bg-white shadow border-b">
     <div class="container mx-auto flex items-center justify-between px-6 py-4">
-      <!-- Başlık: Ortada kalıyor -->
-      <h1 class="text-3xl font-bold text-gray-800 text-center flex-grow">
+      <!-- Başlık ortalanıyor, satır sonuna SICAKTIRMA eklenebilir -->
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center flex-grow">
         Decision Support System<br />for Initial Public Offerings
       </h1>
-      <!-- ITU logosu sağa hizalı -->
-      <img src="itu-logo.png" alt="ITU Logo" class="h-16 w-auto ml-4" />
+
+      <!-- ITU logosu sağa hizalı, “itu-logo.png” klasörün içinde olmalı -->
+      <img src="itu-logo.png" alt="ITU Logo" class="h-14 w-auto ml-4" />
     </div>
   </header>
 
-  <!-- ========== KARŞILAMA METNİ ========= -->
+
+  <!-- ========== KARŞILAMA METNİ ========== -->
   <section class="container mx-auto px-6 mt-8 text-center">
-    <p class="text-gray-700 text-lg">
+    <p class="text-gray-700 text-lg max-w-2xl mx-auto">
       Welcome to our Decision Support System designed for initial public offerings!<br />
       Please enter the information of the IPO you want to be analyzed below.
     </p>
   </section>
 
-  <!-- ========== MAIN (FORM) ========= -->
+
+  <!-- ========== MAIN İÇERİK (FORM) ========== -->
   <main class="flex-grow container mx-auto px-6 py-8">
     <div class="max-w-md mx-auto">
 
       <!-- Form Başlığı -->
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Analysis Form</h2>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Analysis Form</h2>
 
-      <!-- Form Kartı (arka plan artık açık gri) -->
+      <!-- Form Kartı: Arka plan lightgray (#E4E4E4), kenar yuvarlak, gölge -->
       <div class="bg-lightgray rounded-2xl shadow-lg p-6">
-        <form id="ipo-form" class="space-y-4">
+        <form id="ipo-form" class="space-y-5">
+
           <!-- X1 -->
           <div>
             <label for="x1" class="block text-gray-800 font-medium mb-1">X1</label>
@@ -70,10 +75,11 @@
               type="number"
               step="any"
               placeholder="Enter X1 value"
-              class="input input-bordered w-full bg-white"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
               required
             />
           </div>
+
           <!-- X2 -->
           <div>
             <label for="x2" class="block text-gray-800 font-medium mb-1">X2</label>
@@ -82,10 +88,11 @@
               type="number"
               step="any"
               placeholder="Enter X2 value"
-              class="input input-bordered w-full bg-white"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
               required
             />
           </div>
+
           <!-- X3 -->
           <div>
             <label for="x3" class="block text-gray-800 font-medium mb-1">X3</label>
@@ -94,10 +101,11 @@
               type="number"
               step="any"
               placeholder="Enter X3 value"
-              class="input input-bordered w-full bg-white"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
               required
             />
           </div>
+
           <!-- X4 -->
           <div>
             <label for="x4" class="block text-gray-800 font-medium mb-1">X4</label>
@@ -106,10 +114,11 @@
               type="number"
               step="any"
               placeholder="Enter X4 value"
-              class="input input-bordered w-full bg-white"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
               required
             />
           </div>
+
           <!-- X5 -->
           <div>
             <label for="x5" class="block text-gray-800 font-medium mb-1">X5</label>
@@ -118,10 +127,11 @@
               type="number"
               step="any"
               placeholder="Enter X5 value"
-              class="input input-bordered w-full bg-white"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
               required
             />
           </div>
+
           <!-- X6 -->
           <div>
             <label for="x6" class="block text-gray-800 font-medium mb-1">X6</label>
@@ -130,10 +140,11 @@
               type="number"
               step="any"
               placeholder="Enter X6 value"
-              class="input input-bordered w-full bg-white"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
               required
             />
           </div>
+
           <!-- X7 -->
           <div>
             <label for="x7" class="block text-gray-800 font-medium mb-1">X7</label>
@@ -142,72 +153,73 @@
               type="number"
               step="any"
               placeholder="Enter X7 value"
-              class="input input-bordered w-full bg-white"
+              class="input input-bordered w-full bg-white placeholder-gray-400 focus:ring-2 focus:ring-blueitutech"
               required
             />
           </div>
 
-          <!-- RUN ANALYSIS Butonu (her zaman görünür, sabit turuncu arka plan) -->
+          <!-- RUN ANALYSIS Butonu: Her zaman sabit turuncu (her durumda görünür) -->
           <button
             type="submit"
-            class="btn w-full bg-orangebutton text-white border-none mt-2 focus:outline-none"
+            class="btn w-full bg-orangebutton text-white font-semibold border-none hover:bg-orangebutton focus:outline-none focus:ring-2 focus:ring-blueitutech transition"
           >
             RUN ANALYSIS
           </button>
+
         </form>
 
-        <!-- API Sonucu için Alan -->
+        <!-- API Sonucu İçin Ayırdığımız Alan -->
         <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
       </div>
     </div>
   </main>
 
-  <!-- ========== FOOTER ========= -->
-  <footer class="bg-blueitutech border-t">
-    <div class="container mx-auto px-6 py-4 text-center text-white">
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-blueitutech">
+    <div class="container mx-auto px-6 py-5 text-center text-white">
       <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
-      <p class="mt-1 text-sm">
-        Disclaimer: This tool does not constitute investment advice; for informational purposes only.
-      </p>
+      <p class="mt-1 text-sm">Disclaimer: This tool does not constitute investment advice; for informational purposes only.</p>
     </div>
   </footer>
 
 
-  <!-- ========== JavaScript: API Etkileşimi ========== -->
+  <!-- ========== JavaScript: Form Submit ve API Çağrısı ========== -->
   <script>
-    const form = document.getElementById('ipo-form');
-    const resultDiv = document.getElementById('result');
-
-    form.addEventListener('submit', async function(e) {
+    document.getElementById("ipo-form").addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      // Form değerlerini oku
-      const body = {
-        x1: +document.getElementById('x1').value,
-        x2: +document.getElementById('x2').value,
-        x3: +document.getElementById('x3').value,
-        x4: +document.getElementById('x4').value,
-        x5: +document.getElementById('x5').value,
-        x6: +document.getElementById('x6').value,
-        x7: +document.getElementById('x7').value
+      // Form input’larından değerleri sayıya çevirerek oku
+      const payload = {
+        x1: +document.getElementById("x1").value,
+        x2: +document.getElementById("x2").value,
+        x3: +document.getElementById("x3").value,
+        x4: +document.getElementById("x4").value,
+        x5: +document.getElementById("x5").value,
+        x6: +document.getElementById("x6").value,
+        x7: +document.getElementById("x7").value,
       };
 
+      const resultDiv = document.getElementById("result");
+      resultDiv.textContent = "⏳ Processing...";
+
       try {
-        // Kendi FastAPI/Render URL’inizi buraya koyun
+        // Kendi Render/Vercel API URL’inizi aşağıya yapıştırın:
         const response = await fetch("https://forecast-site-api.onrender.com/predict", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
+          body: JSON.stringify(payload),
         });
 
         if (!response.ok) throw new Error(response.status);
 
         const data = await response.json();
-        // Örnek: API { result: "A" } veya { result: "B" } döndürüyor
+
+        // API’nin döndürdüğü result A veya B’dir. Siz farklı döndürebilirsiniz.
         if (data.result === "A") {
-          resultDiv.innerHTML = "🎉 Congratulations, positive scenario detected!";
+          resultDiv.innerHTML = "🎉 Congratulations! Positive scenario detected.";
         } else {
-          resultDiv.innerHTML = "⚠️ Sorry, appears to be below target.";
+          resultDiv.innerHTML = "⚠️ Sorry, indicates a below-target scenario.";
         }
       } catch (err) {
         resultDiv.innerHTML = "⛔ An error occurred. Please try again.";
