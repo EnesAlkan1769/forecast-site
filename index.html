@@ -5,19 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Decision Support System for IPOs</title>
 
-  <!-- 1. Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- 2. DaisyUI Plugin (Tailwind’tan sonra) -->
+  <!-- 1. Önce Tailwind konfigürasyonunu tanımlıyoruz -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            /* İstediğiniz renkler buradaki değişken isimleriyle kullanılabilir */
-            blueitutech: "#00295F",    /* Footer’ı ve bazı spot öğeleri boyamak için */
-            orangebutton: "#FE6502",    /* “RUN ANALYSIS” butonunun sabit arka planı */
-            lightgray: "#E4E4E4"        /* Form kartının ve sayfa arka planının genel rengi */
+            /* İstediğiniz renk paletini buraya tanımlıyoruz */
+            blueitutech: "#00295F",    /* Footer rengi */
+            orangebutton: "#FE6502",    /* Buton arka planı */
+            lightgray: "#E4E4E4"        /* Sayfa ve form kartı arka planı */
           }
         }
       },
@@ -27,27 +24,29 @@
       }
     };
   </script>
-  <!-- 3. DaisyUI Script -->
-  <script src="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.js"></script>
+
+  <!-- 2. Ardından TailwindCSS’i CDN’den yüklüyoruz -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 3. DaisyUI eklentisini de Tailwind ile birlikte yüklemek için -->
+  <!--    (Tailwind CDN zaten "plugins: [daisyui]" ile eklentiyi dahil ediyor) -->
 </head>
 
 <body class="bg-lightgray min-h-screen flex flex-col">
 
-  <!-- ========== HEADER ========== -->
+  <!-- ===================== HEADER ===================== -->
   <header class="bg-white shadow border-b">
     <div class="container mx-auto flex items-center justify-between px-6 py-4">
-      <!-- Başlık ortalanıyor, satır sonuna SICAKTIRMA eklenebilir -->
+      <!-- Başlık ortalanacak şekilde esnetiyoruz -->
       <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center flex-grow">
         Decision Support System<br />for Initial Public Offerings
       </h1>
-
-      <!-- ITU logosu sağa hizalı, “itu-logo.png” klasörün içinde olmalı -->
+      <!-- ITU logosu; aynı klasöre koyduğunuzdan emin olun ("itu-logo.png") -->
       <img src="itu-logo.png" alt="ITU Logo" class="h-14 w-auto ml-4" />
     </div>
   </header>
 
-
-  <!-- ========== KARŞILAMA METNİ ========== -->
+  <!-- ===================== KARŞILAMA METNİ ===================== -->
   <section class="container mx-auto px-6 mt-8 text-center">
     <p class="text-gray-700 text-lg max-w-2xl mx-auto">
       Welcome to our Decision Support System designed for initial public offerings!<br />
@@ -55,15 +54,14 @@
     </p>
   </section>
 
-
-  <!-- ========== MAIN İÇERİK (FORM) ========== -->
+  <!-- ===================== FORM BÖLÜMÜ ===================== -->
   <main class="flex-grow container mx-auto px-6 py-8">
     <div class="max-w-md mx-auto">
 
       <!-- Form Başlığı -->
       <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Analysis Form</h2>
 
-      <!-- Form Kartı: Arka plan lightgray (#E4E4E4), kenar yuvarlak, gölge -->
+      <!-- Form Kartı: Arka plan açık gri, yuvarlak köşeler, gölge -->
       <div class="bg-lightgray rounded-2xl shadow-lg p-6">
         <form id="ipo-form" class="space-y-5">
 
@@ -158,38 +156,38 @@
             />
           </div>
 
-          <!-- RUN ANALYSIS Butonu: Her zaman sabit turuncu (her durumda görünür) -->
+          <!-- RUN ANALYSIS Butonu: TURUNCU sabit, her zaman görünecek -->
           <button
             type="submit"
-            class="btn w-full bg-orangebutton text-white font-semibold border-none hover:bg-orangebutton focus:outline-none focus:ring-2 focus:ring-blueitutech transition"
+            class="btn w-full bg-orangebutton text-white font-semibold border-none focus:outline-none focus:ring-2 focus:ring-blueitutech transition"
           >
             RUN ANALYSIS
           </button>
 
         </form>
 
-        <!-- API Sonucu İçin Ayırdığımız Alan -->
+        <!-- API’den dönecek sonucu göstereceğimiz alan -->
         <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
       </div>
     </div>
   </main>
 
-
-  <!-- ========== FOOTER ========== -->
+  <!-- ===================== FOOTER ===================== -->
   <footer class="bg-blueitutech">
     <div class="container mx-auto px-6 py-5 text-center text-white">
       <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
-      <p class="mt-1 text-sm">Disclaimer: This tool does not constitute investment advice; for informational purposes only.</p>
+      <p class="mt-1 text-sm">
+        Disclaimer: This tool does not constitute investment advice; for informational purposes only.
+      </p>
     </div>
   </footer>
 
-
-  <!-- ========== JavaScript: Form Submit ve API Çağrısı ========== -->
+  <!-- ===================== JAVASCRIPT: Form Submit ve API Çağrısı ===================== -->
   <script>
     document.getElementById("ipo-form").addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      // Form input’larından değerleri sayıya çevirerek oku
+      // Form input’larındaki değerleri topla
       const payload = {
         x1: +document.getElementById("x1").value,
         x2: +document.getElementById("x2").value,
@@ -204,7 +202,7 @@
       resultDiv.textContent = "⏳ Processing...";
 
       try {
-        // Kendi Render/Vercel API URL’inizi aşağıya yapıştırın:
+        // Kendi API URL’inizi mutlaka buraya yapıştırın:
         const response = await fetch("https://forecast-site-api.onrender.com/predict", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -215,7 +213,7 @@
 
         const data = await response.json();
 
-        // API’nin döndürdüğü result A veya B’dir. Siz farklı döndürebilirsiniz.
+        // API’den dönen “A” veya “B” senaryosuna göre mesaj göster
         if (data.result === "A") {
           resultDiv.innerHTML = "🎉 Congratulations! Positive scenario detected.";
         } else {
