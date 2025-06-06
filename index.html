@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Decision Support System for IPOs</title>
 
-  <!-- 1) Tailwind CSS CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- 2) DaisyUI Plugin (for Tailwind) -->
+  <!-- DaisyUI Plugin (for Tailwind) -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            blueitutech: '#00295F',    /* ITU‐blue */
+            blueitutech: '#00295F',    /* ITU‐mavi */
             orangebutton: '#FE6502',    /* Turuncu buton */
             lightgray: '#E4E4E4',       /* Açık gri arka plan */
           }
@@ -59,8 +59,8 @@
       <!-- Form Başlığı -->
       <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Analysis Form</h2>
 
-      <!-- Form Kartı -->
-      <div class="bg-white rounded-2xl shadow-lg p-6">
+      <!-- Form Kartı (arka plan artık açık gri) -->
+      <div class="bg-lightgray rounded-2xl shadow-lg p-6">
         <form id="ipo-form" class="space-y-4">
           <!-- X1 -->
           <div>
@@ -70,7 +70,7 @@
               type="number"
               step="any"
               placeholder="Enter X1 value"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full bg-white"
               required
             />
           </div>
@@ -82,7 +82,7 @@
               type="number"
               step="any"
               placeholder="Enter X2 value"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full bg-white"
               required
             />
           </div>
@@ -94,7 +94,7 @@
               type="number"
               step="any"
               placeholder="Enter X3 value"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full bg-white"
               required
             />
           </div>
@@ -106,7 +106,7 @@
               type="number"
               step="any"
               placeholder="Enter X4 value"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full bg-white"
               required
             />
           </div>
@@ -118,7 +118,7 @@
               type="number"
               step="any"
               placeholder="Enter X5 value"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full bg-white"
               required
             />
           </div>
@@ -130,7 +130,7 @@
               type="number"
               step="any"
               placeholder="Enter X6 value"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full bg-white"
               required
             />
           </div>
@@ -142,15 +142,15 @@
               type="number"
               step="any"
               placeholder="Enter X7 value"
-              class="input input-bordered w-full"
+              class="input input-bordered w-full bg-white"
               required
             />
           </div>
 
-          <!-- Gönder Butonu -->
+          <!-- RUN ANALYSIS Butonu (her zaman görünür, sabit turuncu arka plan) -->
           <button
             type="submit"
-            class="btn w-full bg-orangebutton hover:bg-orange-600 text-white border-none mt-2"
+            class="btn w-full bg-orangebutton text-white border-none mt-2 focus:outline-none"
           >
             RUN ANALYSIS
           </button>
@@ -163,8 +163,8 @@
   </main>
 
   <!-- ========== FOOTER ========= -->
-  <footer class="bg-white border-t">
-    <div class="container mx-auto px-6 py-4 text-center text-gray-600">
+  <footer class="bg-blueitutech border-t">
+    <div class="container mx-auto px-6 py-4 text-center text-white">
       <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
       <p class="mt-1 text-sm">
         Disclaimer: This tool does not constitute investment advice; for informational purposes only.
