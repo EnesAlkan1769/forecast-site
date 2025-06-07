@@ -2,145 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Decision Support Tool for IPOs</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            blueitutech: "#00295F",
-            orangebutton: "#FE6502",
-            lightgray: "#E4E4E4"
-          }
-        }
-      }
-    };
-  </script>
+  <title>IPO Prediction - CATDV01</title>
 </head>
+<body>
+  <h2>IPO Decision Support Tool</h2>
+  <form id="predictionForm">
+    <label>IV19: <input type="number" id="x1" required></label><br>
+    <label>IV18: <input type="number" id="x2" required></label><br>
+    <label>IV15: <input type="number" id="x3" required></label><br>
+    <label>LOGIV17: <input type="number" id="x4" required></label><br>
+    <label>LOGIV14: <input type="number" id="x5" required></label><br>
+    <label>LOGIV20 (CATDV01): <input type="number" id="x6" required></label><br>
+    <label>IV01 (CATDV03): <input type="number" id="x7" required></label><br>
+    <label>IV09: <input type="number" id="x8" required></label><br><br>
+    <button type="submit">Run Analysis</button>
+  </form>
 
-<body class="bg-lightgray min-h-screen flex flex-col justify-between">
-<header class="bg-white shadow border-b">
-  <div class="container mx-auto px-6 py-4 relative">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center">
-      Decision Support Tool<br />for Initial Public Offerings
-    </h1>
-    <img src="itu-logo.png" alt="ITU Logo"
-         class="h-20 w-auto mt-4 md:mt-0 md:absolute md:top-1/2 md:right-6 md:-translate-y-1/2 mx-auto md:mx-0 block" />
-  </div>
-</header>
-
-  <section class="container mx-auto px-6 mt-8 text-center">
-    <p class="text-blueitutech text-lg max-w-2xl mx-auto">
-      Welcome to our Decision Support Tool designed for initial public offerings!<br />
-      Please enter the information of the IPO you want to be analyzed below.
-    </p>
-  </section>
-
-  <main class="flex-grow container mx-auto px-6 py-8">
-    <div class="flex flex-col lg:flex-row lg:space-x-10">
-      <!-- Form Container -->
-      <div class="w-full lg:w-1/2">
-        <h2 class="text-2xl font-semibold text-blueitutech mb-6 text-center">Analysis Form</h2>
-
-        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
-          <form id="ipo-form" class="space-y-5">
-            <div>
-              <label for="x1" class="block text-gray-800 font-medium mb-1">X1</label>
-              <input id="x1" type="number" step="any" placeholder="Enter X1 value" class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-            </div>
-            <div>
-              <label for="x2" class="block text-gray-800 font-medium mb-1">X2</label>
-              <input id="x2" type="number" step="any" placeholder="Enter X2 value" class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-            </div>
-            <div>
-              <label for="x3" class="block text-gray-800 font-medium mb-1">X3</label>
-              <input id="x3" type="number" step="any" placeholder="Enter X3 value" class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-            </div>
-            <div>
-              <label for="x4" class="block text-gray-800 font-medium mb-1">X4</label>
-              <input id="x4" type="number" step="any" placeholder="Enter X4 value" class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-            </div>
-            <div>
-              <label for="x5" class="block text-gray-800 font-medium mb-1">X5</label>
-              <input id="x5" type="number" step="any" placeholder="Enter X5 value" class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-            </div>
-            <div>
-              <label for="x6" class="block text-gray-800 font-medium mb-1">X6</label>
-              <input id="x6" type="number" step="any" placeholder="Enter X6 value" class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-            </div>
-            <div>
-              <label for="x7" class="block text-gray-800 font-medium mb-1">X7</label>
-              <input id="x7" type="number" step="any" placeholder="Enter X7 value" class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-            </div>
-            <button type="submit" class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none focus:outline-none focus:ring-2 focus:ring-blueitutech transition duration-200 py-3">
-              RUN ANALYSIS
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Result Container -->
-      <div class="w-full lg:w-1/2 flex items-start justify-center mt-48 lg:mt-32">
-        <div>
-          <h2 class="text-xl font-semibold text-blueitutech mb-4 text-center hidden" id="result-title">Result</h2>
-          <div id="result" class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300 text-center text-lg font-semibold text-gray-900 hidden"></div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer class="bg-blueitutech mt-10">
-    <div class="container mx-auto px-6 py-5 text-center text-white">
-      <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
-      <p class="mt-1 text-sm">
-        Disclaimer: This tool does not constitute investment advice; for informational purposes only.
-      </p>
-    </div>
-  </footer>
+  <h3 id="result"></h3>
 
   <script>
-    document.getElementById("ipo-form").addEventListener("submit", async function (e) {
+    document.getElementById('predictionForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const payload = {
-        x1: +document.getElementById("x1").value,
-        x2: +document.getElementById("x2").value,
-        x3: +document.getElementById("x3").value,
-        x4: +document.getElementById("x4").value,
-        x5: +document.getElementById("x5").value,
-        x6: +document.getElementById("x6").value,
-        x7: +document.getElementById("x7").value,
+      const data = {
+        x1: parseFloat(document.getElementById('x1').value),
+        x2: parseFloat(document.getElementById('x2').value),
+        x3: parseFloat(document.getElementById('x3').value),
+        x4: parseFloat(document.getElementById('x4').value),
+        x5: parseFloat(document.getElementById('x5').value),
+        x6: parseFloat(document.getElementById('x6').value),
+        x7: parseFloat(document.getElementById('x7').value),
+        x8: parseFloat(document.getElementById('x8').value)
       };
 
-      const resultDiv = document.getElementById("result");
-      document.getElementById("result-title").classList.remove("hidden");
-      resultDiv.classList.remove("hidden");
-      resultDiv.textContent = "⏳ Processing...";
+      const response = await fetch('https://forecast-site-api.onrender.com/predict_catdv01', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
-      try {
-        const response = await fetch("https://forecast-site-api.onrender.com/predict", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-
-        if (!response.ok) throw new Error(response.status);
-
-        const data = await response.json();
-
-        if (data.result === "A") {
-          resultDiv.innerHTML = "🎉 Congratulations! Positive scenario detected.";
-        } else {
-          resultDiv.innerHTML = "⚠️ Sorry, indicates a below-target scenario.";
-        }
-      } catch (err) {
-        resultDiv.innerHTML = "⛔ An error occurred. Please try again.";
-        console.error(err);
-      }
+      const result = await response.json();
+      document.getElementById('result').innerText = `Model Tahmini: ${result.result}`;
     });
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IPO Prediction - CATDV01</title>
+</head>
+<body>
+  <h2>IPO Decision Support Tool</h2>
+  <form action="https://forecast-site-api.onrender.com/predict_catdv01" method="post">
+    <label>IV19: <input type="number" name="x1" required></label><br>
+    <label>IV18: <input type="number" name="x2" required></label><br>
+    <label>IV15: <input type="number" name="x3" required></label><br>
+    <label>LOGIV17: <input type="number" name="x4" required></label><br>
+    <label>LOGIV14: <input type="number" name="x5" required></label><br>
+    <label>LOGIV20 (CATDV01): <input type="number" name="x6" required></label><br>
+    <label>IV01 (CATDV03): <input type="number" name="x7" required></label><br>
+    <label>IV09: <input type="number" name="x8" required></label><br><br>
+
+    <button type="submit">Run Analysis</button>
+  </form>
+</body>
+</html>
+
