@@ -154,21 +154,23 @@ RUN ANALYSIS
       
         const combined = data01.result + data03.result;
       
-        let finalMessage = "";
-        switch (combined) {
-          case "AA":
-            finalMessage = "📈🚀 Supported by favorable market sentiment and the company’s solid fundamentals, the stock is expected to perform positively within the first month.<br /> Moreover, the comp$            break;
-          case "AB":
-            finalMessage = "📈⚠️ Initial market interest and short-term momentum could drive gains in the first month following the IPO<br /> However, looking ahead to a 1-year horizon, concerns related $ 
-            break;
-          case "BA":
-            finalMessage = "📉📈 Considering the current market conditions and the company's fundamentals, performance within the first month may remain limited and may fall short of expectations for tho$            break;
-          case "BB":
-            finalMessage = "⚠️📉 Given current market conditions and existing uncertainties surrounding the company’s fundamentals, meaningful price appreciation within the first month appears unliely.<b$ 
-            break;
-          default:
-            finalMessage = "No clear prediction available.";
-        }
+let finalMessage = "";
+switch (combined) {
+  case "AA":
+    finalMessage = "📈🚀 Supported by favorable market sentiment and the company’s solid fundamentals, the stock is expected to perform positively within the first month.<br /> Moreover, the company’s operations indicate a strong outlook for sustained growth.";
+    break;
+  case "AB":
+    finalMessage = "📈⚠️ Initial market interest and short-term momentum could drive gains in the first month following the IPO.<br /> However, looking ahead to a 1-year horizon, concerns related to sustainability and market conditions may affect performance.";
+    break;
+  case "BA":
+    finalMessage = "📉📈 Considering the current market conditions and the company's fundamentals, performance within the first month may remain limited and may fall short of expectations for those seeking short-term gains.<br /> Longer-term outlook could be positive.";
+    break;
+  case "BB":
+    finalMessage = "⚠️📉 Given current market conditions and existing uncertainties surrounding the company’s fundamentals, meaningful price appreciation within the first month appears unlikely.<br /> Investors should exercise caution.";
+    break;
+  default:
+    finalMessage = "No clear prediction available.";
+}
         
         finalResult.innerHTML = finalMessage;
       } catch (err) {
