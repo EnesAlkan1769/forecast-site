@@ -94,8 +94,8 @@
 
         const data = await response.json();
         resultDiv.innerHTML = data.result === "A"
-          ? "🎉 Positive IPO outcome expected!"
-          : "⚠️ IPO result below target.";
+          ? "🎉 Considering the overall market conditions and the financial and sectoral dynamics of the company to be publicly offered, the stock is expected to trade above its IPO price within approximately one month, generating a potential return for investors.!"
+          : "⚠️ Considering the overall market conditions and the characteristics of the company to be publicly offered, short-term price appreciation within the first month appears uncertain. Investors may consider exercising caution when evaluating short-term return expectations..";
       } catch (err) {
         resultDiv.innerHTML = "⛔ An error occurred. Please try again.";
         console.error(err);
