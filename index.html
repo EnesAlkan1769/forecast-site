@@ -121,8 +121,8 @@ document.getElementById("ipo-form").addEventListener("submit", async function (e
   const result03 = document.getElementById("result03");
   const finalResult = document.getElementById("finalResult");
 
-  result01.textContent = "⏳ CATDV01 processing...";
-  result03.textContent = "⏳ CATDV03 processing...";
+  result01.textContent = "Processing...";
+  result03.textContent = "";
   finalResult.textContent = "";
 
   try {
@@ -144,12 +144,12 @@ document.getElementById("ipo-form").addEventListener("submit", async function (e
     const data03 = await response03.json();
 
     result01.innerHTML = data01.result === "A"
-      ? "📈 CATDV01 Result: Positive"
-      : "📉 CATDV01 Result: Below Target";
+      ? " "
+      : " ";
 
     result03.innerHTML = data03.result === "A"
-      ? "📈 CATDV03 Result: Positive"
-      : "📉 CATDV03 Result: Below Target";
+      ? " "
+      : "";
 
     const combined = data01.result + data03.result;
 
