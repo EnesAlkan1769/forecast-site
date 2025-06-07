@@ -44,35 +44,63 @@
 
       <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
         <form id="ipo-form" class="space-y-5">
-          <div><label for="x1">IV19</label><input id="x1" type="number" required class="input w-full" /></div>
-          <div><label for="x2">IV18</label><input id="x2" type="number" required class="input w-full" /></div>
-          <div><label for="x3">IV15</label><input id="x3" type="number" required class="input w-full" /></div>
-          <div><label for="x4">LOGIV17</label><input id="x4" type="number" required class="input w-full" /></div>
-          <div><label for="x5">LOGIV14</label><input id="x5" type="number" required class="input w-full" /></div>
-          <div><label for="x6">LOGIV20 (CATDV01)</label><input id="x6" type="number" required class="input w-full" /></div>
-<div>
-  <label for="x7" class="block text-gray-800 font-medium mb-1">IV01 (CATDV03)</label>
-  <input id="x7" type="number" step="any" placeholder="Enter IV01"
-    class="input w-full bg-lightgray text-blueitutech rounded-lg border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-</div>
+          <div>
+            <label for="x2">Consumer Confidence Index</label>
+            <input id="x2" type="number" step="any" placeholder="Enter Consumer Confidence Index"
+              class="input w-full" required />
+          </div>
+          <div>
+            <label for="x1">Inflation Rate (CPI) [%]</label>
+            <input id="x1" type="number" step="any" placeholder="Enter Inflation Rate"
+              class="input w-full" required />
+          </div>
+          <div>
+            <label for="x6">Interest Rate [%]</label>
+            <input id="x6" type="number" step="any" placeholder="Enter Interest Rate"
+              class="input w-full" required />
+          </div>
+          <div>
+            <label for="x3">IPO Discount Ratio [%]</label>
+            <input id="x3" type="number" step="any" placeholder="Enter IPO Discount Ratio"
+              class="input w-full" required />
+          </div>
+          <div>
+            <label for="x7">IPO Allocation Ratio [%]</label>
+            <input id="x7" type="number" step="any" placeholder="Enter IPO Allocation Ratio"
+              class="input w-full" required />
+          </div>
+          <div>
+            <label for="x8">Return on Invested Capital (ROIC) [%]</label>
+            <input id="x8" type="number" step="any" placeholder="Enter ROIC"
+              class="input w-full" required />
+          </div>
+          <div>
+            <label for="x5">Pre-IPO Market Capitalization (in thousands)</label>
+            <input id="x5" type="number" step="any" placeholder="Enter Market Capitalization"
+              class="input w-full" required />
+          </div>
+          <div>
+            <label for="x4">Number of Participants in Previous IPO</label>
+            <input id="x4" type="number" step="any" placeholder="Enter Number of Participants"
+              class="input w-full" required />
+          </div>
 
-          <div><label for="x8">IV09</label><input id="x8" type="number" required class="input w-full" /></div>
           <button type="submit"
             class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none py-3">
             RUN ANALYSIS
           </button>
         </form>
-<div id="result01" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
-<div id="result03" class="mt-4 text-center text-lg font-semibold text-gray-900"></div>
+        <div id="result01" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>   
+        <div id="result03" class="mt-4 text-center text-lg font-semibold text-gray-900"></div>
       </div>
-    </div>
+    </div>  
   </main>
-
+  
   <footer class="bg-blueitutech mt-10 text-white text-center py-4">
     <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
     <p class="text-sm mt-1">Disclaimer: This tool does not constitute investment advice.</p>
   </footer>
-
+        
   <script>
     document.getElementById("ipo-form").addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -83,48 +111,48 @@
         x4: +document.getElementById("x4").value,
         x5: +document.getElementById("x5").value,
         x6: +document.getElementById("x6").value,
-        x7: 0,  // geçici placeholder (modelde kullanılmıyor ama JSON yapısına uyuyor)
-        x8: +document.getElementById("x8").value
+        x7: +document.getElementById("x7").value,
+        x8: +document.getElementById("x8").value,
       };
+          
+      const result01 = document.getElementById("result01");
+      const result03 = document.getElementById("result03");
+          
+      result01.textContent = "⏳ CATDV01 processing...";
+      result03.textContent = "⏳ CATDV03 processing...";
 
-const result01 = document.getElementById("result01");
-const result03 = document.getElementById("result03");
-
-result01.textContent = "⏳ CATDV01 processing...";
-result03.textContent = "⏳ CATDV03 processing...";
-
-try {
-  const response01 = await fetch("https://forecast-site-api.onrender.com/predict_catdv01", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  const response03 = await fetch("https://forecast-site-api.onrender.com/predict_catdv03", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  if (!response01.ok || !response03.ok) throw new Error("Request failed");
-
-  const data01 = await response01.json();
-  const data03 = await response03.json();
-
-  result01.innerHTML = data01.result === "A"
-    ? "📈 CATDV01 Result: Positive"
-    : "📉 CATDV01 Result: Below Target";
-
-  result03.innerHTML = data03.result === "A"
-    ? "📈 CATDV03 Result: Positive"
-    : "📉 CATDV03 Result: Below Target";
-
-} catch (err) {
-  result01.innerHTML = "⛔ Error in CATDV01";
-  result03.innerHTML = "⛔ Error in CATDV03";
-  console.error(err);
-}
+      try {
+        const response01 = await fetch("https://forecast-site-api.onrender.com/predict_catdv01", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+          
+        const response03 = await fetch("https://forecast-site-api.onrender.com/predict_catdv03", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+            
+        if (!response01.ok || !response03.ok) throw new Error("Request failed");
+          
+        const data01 = await response01.json();
+        const data03 = await response03.json();
+          
+        result01.innerHTML = data01.result === "A"
+          ? "📈 CATDV01 Result: Positive"
+          : "📉 CATDV01 Result: Below Target";
+        result03.innerHTML = data03.result === "A"
+          ? "📈 CATDV03 Result: Positive"
+          : "📉 CATDV03 Result: Below Target";
+            
+      } catch (err) {
+        result01.innerHTML = "⛔ Error in CATDV01";
+        result03.innerHTML = "⛔ Error in CATDV03";
+        console.error(err);
+      }
     });
   </script>
 </body>
 </html>
+
