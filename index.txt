@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IPO Prediction - CATDV01</title>
+</head>
+<body>
+  <h2>IPO Decision Support Tool</h2>
+  <form action="https://forecast-site-api.onrender.com/predict_catdv01" method="post">
+    <label>IV19: <input type="number" name="x1" required></label><br>
+    <label>IV18: <input type="number" name="x2" required></label><br>
+    <label>IV15: <input type="number" name="x3" required></label><br>
+    <label>LOGIV17: <input type="number" name="x4" required></label><br>
+    <label>LOGIV14: <input type="number" name="x5" required></label><br>
+    <label>LOGIV20 (CATDV01): <input type="number" name="x6" required></label><br>
+    <label>IV01 (CATDV03): <input type="number" name="x7" required></label><br>
+    <label>IV09: <input type="number" name="x8" required></label><br><br>
+
+    <button type="submit">Run Analysis</button>
+  </form>
+</body>
+</html>
