@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Decision Support Tool for IPOs</title>
-
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -20,24 +20,24 @@
     };
   </script>
 </head>
-
+            
 <body class="bg-lightgray min-h-screen flex flex-col justify-between">
   <header class="bg-white shadow border-b">
     <div class="container mx-auto px-6 py-4 relative">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center">
         Decision Support System<br />for Initial Public Offerings
-      </h1>
+      </h1>   
       <img src="itu-logo.png" alt="ITU Logo" class="h-20 w-auto absolute right-6 top-1/2 -translate-y-1/2" />
     </div>
   </header>
-
+            
   <section class="container mx-auto px-6 mt-8 text-center">
     <p class="text-blueitutech text-lg max-w-2xl mx-auto">
       Welcome to our Decision Support Tool designed for initial public offerings!<br />
       Please enter the information related to the IPO you would like to analyze below.
     </p>
-  </section>
-
+  </section>  
+        
   <main class="flex-grow container mx-auto px-6 py-8 flex justify-center gap-10">
     <div class="max-w-md bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
       <h2 class="text-2xl font-semibold text-blueitutech mb-6 text-center">Analysis Form</h2>
@@ -56,7 +56,7 @@
           <label for="x6">Interest Rate [%]</label>
           <input id="x6" type="number" step="any"
             class="input w-full bg-lightgray rounded-xl border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
-        </div>   
+        </div>
         <div>
           <label for="x3">IPO Discount Ratio [%]</label>
           <input id="x3" type="number" step="any"
@@ -82,29 +82,31 @@
           <input id="x4" type="number" step="any"
             class="input w-full bg-lightgray rounded-xl border border-gray-300 placeholder-blueitutech focus:ring-2 focus:ring-blueitutech" required />
         </div>
-
+          
         <button type="submit"
           class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none py-3">
-          RUN ANALYSIS
+RUN ANALYSIS
         </button>
       </form>
     </div>
-<div class="rounded-xl shadow-md p-6 h-auto">
+
+    <!-- Sağdaki sonuç kısmı - ARKA PLAN: lightgray, border ve shadow KALDIRILDI -->
+    <div class="max-w-md bg-lightgray rounded-2xl p-6 flex flex-col justify-center">
       <div id="result01" class="mb-4 text-lg font-semibold text-gray-900"></div>
       <div id="result03" class="mb-4 text-lg font-semibold text-gray-900"></div>
       <div id="finalResult" class="text-lg font-semibold text-gray-900"></div>
     </div>
   </main>
-
+        
   <footer class="bg-blueitutech mt-10 text-white text-center py-4">
-    <p>© 2025 DSS All rights reserved – EFE Consultancy Services</p>
+    <p>© 2025 DSS All rights reserved – EFE Consultancy Services</p>   
     <p class="text-sm mt-1">Disclaimer: This tool does not constitute investment advice.</p>
   </footer>
-
-  <script>
+        
+  <script>   
     document.getElementById("ipo-form").addEventListener("submit", async function (e) {
       e.preventDefault();
-
+            
       const payload = {
         x1: +document.getElementById("x1").value,
         x2: +document.getElementById("x2").value,
@@ -114,65 +116,63 @@
         x6: +document.getElementById("x6").value,
         x7: +document.getElementById("x7").value,
         x8: +document.getElementById("x8").value,
-      };
-
+ };
+        
       const result01 = document.getElementById("result01");
       const result03 = document.getElementById("result03");
       const finalResult = document.getElementById("finalResult");
-
+      
       result01.textContent = "Processing...";
       result03.textContent = "";
       finalResult.textContent = "";
-
+  
       try {
         const response01 = await fetch("https://forecast-site-api.onrender.com/predict_catdv01", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-
+  
         const response03 = await fetch("https://forecast-site-api.onrender.com/predict_catdv03", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-
+        
         if (!response01.ok || !response03.ok) throw new Error("Request failed");
-
-        const data01 = await response01.json();
-        const data03 = await response03.json();
-
+        
+        const data01 = await response01.json();  
+        const data03 = await response03.json();  
+        
         result01.innerHTML = data01.result === "A"
-          ? " "
+? " "
           : " ";
-
+      
         result03.innerHTML = data03.result === "A"
           ? " "
           : "";
-
+      
         const combined = data01.result + data03.result;
-
+      
         let finalMessage = "";
         switch (combined) {
           case "AA":
-            finalMessage = "📈🚀 Supported by favorable market sentiment and the company’s solid fundamentals, the stock is expected to perform positively within the first month.<br /> Moreover, the company’s operational outlook suggests potential for sustained growth over the next year.";
-            break;
+            finalMessage = "📈🚀 Supported by favorable market sentiment and the company’s solid fundamentals, the stock is expected to perform positively within the first month.<br /> Moreover, the comp$            break;
           case "AB":
-            finalMessage = "📈⚠️ Initial market interest and short-term momentum could drive gains in the first month following the IPO<br /> However, looking ahead to a 1-year horizon, concerns related to sustainability and market conditions may temper expectations.";
+            finalMessage = "📈⚠️ Initial market interest and short-term momentum could drive gains in the first month following the IPO<br /> However, looking ahead to a 1-year horizon, concerns related $ 
             break;
           case "BA":
-            finalMessage = "📉📈 Considering the current market conditions and the company's fundamentals, performance within the first month may remain limited and may fall short of expectations for those seeking short-term gains.<br /> However, positive operational fundamentals could support longer-term growth.";
-            break;
+            finalMessage = "📉📈 Considering the current market conditions and the company's fundamentals, performance within the first month may remain limited and may fall short of expectations for tho$            break;
           case "BB":
-            finalMessage = "⚠️📉 Given current market conditions and existing uncertainties surrounding the company’s fundamentals, meaningful price appreciation within the first month appears unliely.<br /> Furthermore, a 1-year outlook does not reveal strong catalysts for sustained growth. Caution is advised.";
+            finalMessage = "⚠️📉 Given current market conditions and existing uncertainties surrounding the company’s fundamentals, meaningful price appreciation within the first month appears unliely.<b$ 
             break;
           default:
             finalMessage = "No clear prediction available.";
         }
-
+        
         finalResult.innerHTML = finalMessage;
       } catch (err) {
-        result01.innerHTML = " ";
+result01.innerHTML = " ";
         result03.innerHTML = "Please try again later";
         finalResult.innerHTML = "";
         console.error(err);
