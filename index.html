@@ -38,50 +38,48 @@
     </p>
   </section>
 
-  <main class="flex-grow container mx-auto px-6 py-8">
-    <div class="max-w-md mx-auto">
-      <h2 class="text-2xl font-semibold text-blueitutech mb-6 text-center">Analysis Form</h2>
-
-      <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
-        <form id="ipo-form" class="space-y-5">
+<main class="flex-grow container mx-auto px-6 py-8 flex justify-center gap-10">
+  <div class="max-w-md bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
+    <h2 class="text-2xl font-semibold text-blueitutech mb-6 text-center">Analysis Form</h2>
+    <form id="ipo-form" class="space-y-5">
           <div>
             <label for="x2">Consumer Confidence Index</label>
-            <input id="x2" type="number" step="any" placeholder="Enter Consumer Confidence Index"
+            <input id="x2" type="number" step="any" 
               class="input w-full" required />
           </div>
           <div>
             <label for="x1">Inflation Rate (CPI) [%]</label>
-            <input id="x1" type="number" step="any" placeholder="Enter Inflation Rate"
+            <input id="x1" type="number" step="any"
               class="input w-full" required />
           </div>
           <div>
             <label for="x6">Interest Rate [%]</label>
-            <input id="x6" type="number" step="any" placeholder="Enter Interest Rate"
+            <input id="x6" type="number" step="any" 
               class="input w-full" required />
           </div>
           <div>
             <label for="x3">IPO Discount Ratio [%]</label>
-            <input id="x3" type="number" step="any" placeholder="Enter IPO Discount Ratio"
+            <input id="x3" type="number" step="any" 
               class="input w-full" required />
           </div>
           <div>
             <label for="x7">IPO Allocation Ratio [%]</label>
-            <input id="x7" type="number" step="any" placeholder="Enter IPO Allocation Ratio"
+            <input id="x7" type="number" step="any"
               class="input w-full" required />
           </div>
           <div>
             <label for="x8">Return on Invested Capital (ROIC) [%]</label>
-            <input id="x8" type="number" step="any" placeholder="Enter ROIC"
+            <input id="x8" type="number" step="any"
               class="input w-full" required />
           </div>
           <div>
             <label for="x5">Pre-IPO Market Capitalization (in thousands)</label>
-            <input id="x5" type="number" step="any" placeholder="Enter Market Capitalization"
+            <input id="x5" type="number" step="any"
               class="input w-full" required />
           </div>
           <div>
-            <label for="x4">Number of Participants in Previous IPO</label>
-            <input id="x4" type="number" step="any" placeholder="Enter Number of Participants"
+            <label for="x4">Average Number of Participants in Previous 5 IPO's</label>
+            <input id="x4" type="number" step="any"
               class="input w-full" required />
           </div>
 
@@ -89,13 +87,14 @@
             class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none py-3">
             RUN ANALYSIS
           </button>
-        </form>
-        <div id="result01" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>   
-        <div id="result03" class="mt-4 text-center text-lg font-semibold text-gray-900"></div>
-<div id="finalResult" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
-      </div>
-    </div>  
-  </main>
+</form>
+  </div>
+  <div class="max-w-md bg-white rounded-2xl shadow-lg p-6 border border-gray-300 flex flex-col justify-center">
+    <div id="result01" class="mb-4 text-lg font-semibold text-gray-900"></div>   
+    <div id="result03" class="mb-4 text-lg font-semibold text-gray-900"></div>
+    <div id="finalResult" class="text-lg font-semibold text-gray-900"></div>
+  </div>
+</main>
   
   <footer class="bg-blueitutech mt-10 text-white text-center py-4">
     <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
