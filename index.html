@@ -2,73 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>IPO Prediction - CATDV01</title>
-</head>
-<body>
-  <h2>IPO Decision Support Tool</h2>
-  <form id="predictionForm">
-    <label>IV19: <input type="number" id="x1" required></label><br>
-    <label>IV18: <input type="number" id="x2" required></label><br>
-    <label>IV15: <input type="number" id="x3" required></label><br>
-    <label>LOGIV17: <input type="number" id="x4" required></label><br>
-    <label>LOGIV14: <input type="number" id="x5" required></label><br>
-    <label>LOGIV20 (CATDV01): <input type="number" id="x6" required></label><br>
-    <label>IV01 (CATDV03): <input type="number" id="x7" required></label><br>
-    <label>IV09: <input type="number" id="x8" required></label><br><br>
-    <button type="submit">Run Analysis</button>
-  </form>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decision Support System for IPOs</title>
 
-  <h3 id="result"></h3>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blueitutech: "#00295F",
+            orangebutton: "#FE6502",
+            lightgray: "#E4E4E4"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-lightgray min-h-screen flex flex-col justify-between">
+  <header class="bg-white shadow border-b">
+    <div class="container mx-auto px-6 py-4 relative">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center">
+        Decision Support System<br />for Initial Public Offerings
+      </h1>
+      <img src="itu-logo.png" alt="ITU Logo" class="h-20 w-auto absolute right-6 top-1/2 -translate-y-1/2" />
+    </div>
+  </header>
+
+  <section class="container mx-auto px-6 mt-8 text-center">
+    <p class="text-blueitutech text-lg max-w-2xl mx-auto">
+      Welcome to our Decision Support System designed for initial public offerings!<br />
+      Please enter the IPO-related information below.
+    </p>
+  </section>
+
+  <main class="flex-grow container mx-auto px-6 py-8">
+    <div class="max-w-md mx-auto">
+      <h2 class="text-2xl font-semibold text-blueitutech mb-6 text-center">Analysis Form</h2>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-300">
+        <form id="ipo-form" class="space-y-5">
+          <div><label for="x1">IV19</label><input id="x1" type="number" required class="input w-full" /></div>
+          <div><label for="x2">IV18</label><input id="x2" type="number" required class="input w-full" /></div>
+          <div><label for="x3">IV15</label><input id="x3" type="number" required class="input w-full" /></div>
+          <div><label for="x4">LOGIV17</label><input id="x4" type="number" required class="input w-full" /></div>
+          <div><label for="x5">LOGIV14</label><input id="x5" type="number" required class="input w-full" /></div>
+          <div><label for="x6">LOGIV20 (CATDV01)</label><input id="x6" type="number" required class="input w-full" /></div>
+          <div><label for="x8">IV09</label><input id="x8" type="number" required class="input w-full" /></div>
+          <button type="submit"
+            class="btn w-full bg-orangebutton hover:bg-orange-600 text-white font-semibold border-none py-3">
+            RUN ANALYSIS
+          </button>
+        </form>
+        <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-blueitutech mt-10 text-white text-center py-4">
+    <p>© 2025 Istanbul Technical University – Industrial Engineering Department</p>
+    <p class="text-sm mt-1">Disclaimer: This tool does not constitute investment advice.</p>
+  </footer>
 
   <script>
-    document.getElementById('predictionForm').addEventListener('submit', async function (e) {
+    document.getElementById("ipo-form").addEventListener("submit", async function (e) {
       e.preventDefault();
-
-      const data = {
-        x1: parseFloat(document.getElementById('x1').value),
-        x2: parseFloat(document.getElementById('x2').value),
-        x3: parseFloat(document.getElementById('x3').value),
-        x4: parseFloat(document.getElementById('x4').value),
-        x5: parseFloat(document.getElementById('x5').value),
-        x6: parseFloat(document.getElementById('x6').value),
-        x7: parseFloat(document.getElementById('x7').value),
-        x8: parseFloat(document.getElementById('x8').value)
+      const payload = {
+        x1: +document.getElementById("x1").value,
+        x2: +document.getElementById("x2").value,
+        x3: +document.getElementById("x3").value,
+        x4: +document.getElementById("x4").value,
+        x5: +document.getElementById("x5").value,
+        x6: +document.getElementById("x6").value,
+        x7: 0,  // geçici placeholder (modelde kullanılmıyor ama JSON yapısına uyuyor)
+        x8: +document.getElementById("x8").value
       };
 
-      const response = await fetch('https://forecast-site-api.onrender.com/predict_catdv01', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
+      const resultDiv = document.getElementById("result");
+      resultDiv.textContent = "⏳ Processing...";
 
-      const result = await response.json();
-      document.getElementById('result').innerText = `Model Tahmini: ${result.result}`;
+      try {
+        const response = await fetch("https://forecast-site-api.onrender.com/predict_catdv01", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) throw new Error(response.status);
+
+        const data = await response.json();
+        resultDiv.innerHTML = data.result === "A"
+          ? "🎉 Positive IPO outcome expected!"
+          : "⚠️ IPO result below target.";
+      } catch (err) {
+        resultDiv.innerHTML = "⛔ An error occurred. Please try again.";
+        console.error(err);
+      }
     });
   </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>IPO Prediction - CATDV01</title>
-</head>
-<body>
-  <h2>IPO Decision Support Tool</h2>
-  <form action="https://forecast-site-api.onrender.com/predict_catdv01" method="post">
-    <label>IV19: <input type="number" name="x1" required></label><br>
-    <label>IV18: <input type="number" name="x2" required></label><br>
-    <label>IV15: <input type="number" name="x3" required></label><br>
-    <label>LOGIV17: <input type="number" name="x4" required></label><br>
-    <label>LOGIV14: <input type="number" name="x5" required></label><br>
-    <label>LOGIV20 (CATDV01): <input type="number" name="x6" required></label><br>
-    <label>IV01 (CATDV03): <input type="number" name="x7" required></label><br>
-    <label>IV09: <input type="number" name="x8" required></label><br><br>
-
-    <button type="submit">Run Analysis</button>
-  </form>
-</body>
-</html>
-
