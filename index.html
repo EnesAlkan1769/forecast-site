@@ -92,6 +92,7 @@
         </form>
         <div id="result01" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>   
         <div id="result03" class="mt-4 text-center text-lg font-semibold text-gray-900"></div>
+<div id="finalResult" class="mt-6 text-center text-lg font-semibold text-gray-900"></div>
       </div>
     </div>  
   </main>
@@ -102,56 +103,83 @@
   </footer>
         
   <script>
-    document.getElementById("ipo-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const payload = {
-        x1: +document.getElementById("x1").value,
-        x2: +document.getElementById("x2").value,
-        x3: +document.getElementById("x3").value,
-        x4: +document.getElementById("x4").value,
-        x5: +document.getElementById("x5").value,
-        x6: +document.getElementById("x6").value,
-        x7: +document.getElementById("x7").value,
-        x8: +document.getElementById("x8").value,
-      };
-          
-      const result01 = document.getElementById("result01");
-      const result03 = document.getElementById("result03");
-          
-      result01.textContent = "⏳ CATDV01 processing...";
-      result03.textContent = "⏳ CATDV03 processing...";
+document.getElementById("ipo-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-      try {
-        const response01 = await fetch("https://forecast-site-api.onrender.com/predict_catdv01", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-          
-        const response03 = await fetch("https://forecast-site-api.onrender.com/predict_catdv03", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-            
-        if (!response01.ok || !response03.ok) throw new Error("Request failed");
-          
-        const data01 = await response01.json();
-        const data03 = await response03.json();
-          
-        result01.innerHTML = data01.result === "A"
-          ? "📈 CATDV01 Result: Positive"
-          : "📉 CATDV01 Result: Below Target";
-        result03.innerHTML = data03.result === "A"
-          ? "📈 CATDV03 Result: Positive"
-          : "📉 CATDV03 Result: Below Target";
-            
-      } catch (err) {
-        result01.innerHTML = "⛔ Error in CATDV01";
-        result03.innerHTML = "⛔ Error in CATDV03";
-        console.error(err);
-      }
+  const payload = {
+    x1: +document.getElementById("x1").value,
+    x2: +document.getElementById("x2").value,
+    x3: +document.getElementById("x3").value,
+    x4: +document.getElementById("x4").value,
+    x5: +document.getElementById("x5").value,
+    x6: +document.getElementById("x6").value,
+    x7: +document.getElementById("x7").value,
+    x8: +document.getElementById("x8").value,
+  };
+
+  const result01 = document.getElementById("result01");
+  const result03 = document.getElementById("result03");
+  const finalResult = document.getElementById("finalResult");
+
+  result01.textContent = "⏳ CATDV01 processing...";
+  result03.textContent = "⏳ CATDV03 processing...";
+  finalResult.textContent = "";
+
+  try {
+    const response01 = await fetch("https://forecast-site-api.onrender.com/predict_catdv01", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
+
+    const response03 = await fetch("https://forecast-site-api.onrender.com/predict_catdv03", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response01.ok || !response03.ok) throw new Error("Request failed");
+
+    const data01 = await response01.json();
+    const data03 = await response03.json();
+
+    result01.innerHTML = data01.result === "A"
+      ? "📈 CATDV01 Result: Positive"
+      : "📉 CATDV01 Result: Below Target";
+
+    result03.innerHTML = data03.result === "A"
+      ? "📈 CATDV03 Result: Positive"
+      : "📉 CATDV03 Result: Below Target";
+
+    const combined = data01.result + data03.result;
+
+    let finalMessage = "";
+    switch (combined) {
+      case "AA":
+        finalMessage = "📈🚀 Supported by favorable market sentiment and the company’s solid fundamentals, the stock is expected to perform positively within the first month. Moreover, the company’s operational outlook and sectoral potential indicate continued strength over a 1-year period. This IPO may offer compelling opportunities for investors targeting both early momentum and long-term value.";
+        break;
+      case "AB":
+        finalMessage = "📈⚠ ️️Initial market interest and short-term momentum could drive gains in the first month following the IPO. However, looking ahead to a 1-year horizon, concerns related to sustainability of earnings or sectoral risks may limit further upside. Investors with a quick-turnaround strategy may benefit, while those seeking long-term stability should exercise greater caution.";
+        break;
+      case "BA":
+        finalMessage = "📉📈 Considering the current market conditions and the company's fundamentals, performance within the first month may remain limited and may fall short of expectations for those seeking quick gains. However, when viewed over a 1-year horizon, the company’s growth dynamics and sectoral positioning suggest a more promising outlook. This IPO may be more appropriate for investors aiming for long-term value rather than immediate returns.";
+        break;
+      case "BB":
+        finalMessage = "⚠️📉 Given current market conditions and existing uncertainties surrounding the company’s fundamentals, meaningful price appreciation within the first month appears unlikely. Furthermore, a 1-year outlook does not reveal strong catalysts for sustained growth. As such, this IPO may not align with the expectations of investors seeking either short- or long-term returns. A more cautious stance may be warranted.";
+        break;
+      default:
+        finalMessage = " ";
+    }
+
+    finalResult.innerHTML = finalMessage;
+
+  } catch (err) {
+    result01.innerHTML = "Try again later.";
+    result03.innerHTML = "Please try again later";
+    finalResult.innerHTML = "⛔ Error in combined result";
+    console.error(err);
+  }
+});
   </script>
 </body>
 </html>
